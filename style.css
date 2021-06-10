@@ -1,0 +1,93 @@
+/* color */
+:root {
+    --lgreen: #12B692;
+    --dgreen: #1A9382;
+    --orange: #F37C20;
+    --yellow: #F5BE27;
+    --purpul: #82557D;
+    --black: #231F20;
+}
+
+.container {
+    border: 1px solid #e4e6e8;
+    border-radius: 6px;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+
+.line {
+    padding-top: 5px;
+    font-size: 20px;
+    color: #666666;
+}
+
+.msg {
+    padding-top: 5px;
+    font-size: 15px;
+    color: #666666;
+}
+
+.err {
+    font-size: 10px;
+    color: red;
+}
+
+.photo {
+    height: 150px;
+}
+
+.labl {
+    font-size: 10px;
+    padding-bottom: 2px;
+    color: #7a878b;
+    padding-left: 5px;
+}
+
+.input {
+    padding-bottom: 10px;
+}
+
+.btn{
+    padding-top: 24px;
+    color: #1A9382;
+}
+
+.check{
+    padding-bottom: 10px;
+}
+
+.flex{
+    display: flex;
+}
+
+.date{
+    width: 100%;
+    height: 37px;;
+}
+
+.my-check{
+    padding-top: 30px;
+    padding-left: 50px;
+}
+
+.last-btn{
+    color: #1A9382;
+    padding-top: 20px;
+    padding-left: 30px;
+}
+
+#previw{
+    height: 100vh;
+}
+
+.prev{
+    background-color: #F6F6F6;
+    border: 1px solid #e4e6e8;
+    border-radius: 6px;
+    height: 80vh;
+    /* padding: 30px; */
+    /* margin-top: 30px; */
+    /* margin-bottom: 30px; */
+}

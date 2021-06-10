@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <script type="text/javascript" src="./script.js"></script> -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  crossorigin="anonymous">
+    <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Include Date Range Picker -->
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/> -->
+    <script src='pdfmake.js'></script>
+    <script src='vfs_fonts.js'></script>
+    <script type="module" src="module.js"></script>
+    <title>Document</title>
+  </head>
+
+  <body>
+    <section class="contact-form">
+    <form method="GET" id="" action="/test">
+    <div class="container" id="core">
+      <div class="row">
+        <div class="col">
+          <div class="container" id="main"></div>
+          <div class="container" id="doctor" hidden></div>
+          <div class="container" id="nurse" hidden></div>
+          <div class="container" id="ruc" hidden></div>
+          <div class="container" id="kont"></div>
+          <div class="container" id="exp"></div>
+          <div class="container" id="edu"></div>
+          <div class="container" id="dopedu"></div>
+          <div class="container" id="lang"></div>
+          <div class="container" id="prof"></div>
+          <div class="container" id="dop"></div>
+        </div>
+        <!-- <div class="col">
+             <div class="container" id="previw"></div>
+             </div> -->
+      </div>
+    </div>
+    <button type="submit">save</button>
+    </form>
+    </section>
+    <div class="results">
+      <h2>Form Data</h2>
+      <pre></pre>
+    </div>
+    <script src="data.js"></script>
+    <script src="validators.js"></script>
+    <script src="elements.js"></script>
+    <script src="render.js"></script>
+  </body>
+</html>
