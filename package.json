@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "eslint": "^7.26.0",
+    "eslint-plugin-react": "^7.23.2"
+  },
+  "dependencies": {
+    "pdfmake": "^0.1.71"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "language": "en",
+  "title": "Название резюме",
+  "name": "Александр",
+  "surname": "Иванов",
+  "last_name": "Петрович",
+  "dateofbirth": "22.05.1985",
+  "email": "test@gmail.com",
+  "phone": {
+    "0": "+799912345667",
+    "1": "89111239856"
+  },
+  "regionlist": "ru-sam",
+  "city": "Самара",
+  "desired_position": "Онколог",
+  "metro_station": "Ленинский проспект",
+  "desired_salary": {
+    "sum": "170000",
+    "currency": "rub"
+  },
+  "want_to_be": "Главврач-онколог",
+  "employment": "полная",
+  "citizenship": "Россия",
+  "movement": "Москва",
+  "driver_license": "A,B",
+  "family_status": "Холост",
+  "is_ready_to_move": true,
+  "is_ready_to_business_trip": false,
+  "social": {
+    "facebook": "url.facebook.org",
+    "telegram": "telegramnickname",
+    "whatsapp": "89106554345"
+  },
+  "job_expierence": [
+    {
+      "start_date": "05.2012",
+      "is_working_now": false,
+      "end_date": "09.2015",
+      "company_name": "ООО Больжедор",
+      "position": "Врач-онколог",
+      "duties": "Ведение пациентов с онкологическими заболеваниями"
+    },
+    {
+      "start_date": "10.2015",
+      "is_working_now": true,
+      "company_name": "ООО Больжедор",
+      "position": "Врач-онколог",
+      "duties": "Ведение пациентов с онкологическими заболеваниями"
+    }
+  ],
+  "main_education": [
+    {
+      "institution_name": "РАУ им. Бабаджаняна",
+      "education_level": "Бакалавр",
+      "end_year": "2010"
+    }
+  ],
+  "addition_education": [
+    {
+      "course_name": "Курсы по учебе",
+      "company_name": "ООО ПЭТ Технолоджи",
+      "end_year": "2012"
+    },
+    {
+      "course_name": "Курсы по учебе",
+      "company_name": "ООО ПЭТ Технолоджи",
+      "end_year": "2014"
+    }
+  ],
+  "language_skills": [
+    {
+      "language": "Английский",
+      "level": "А1-начальный"
+    },
+    {
+      "language": "Немецкий",
+      "level": "B2-средне-продвинутый"
+    }
+  ],
+  "professional_skills": [
+    {
+      "skill": "Управление персоналом",
+      "skill_level": "Начальный"
+    },
+    {
+      "skill": "Вождение катера",
+      "skill_level": "Профессиональный"
+    }
+  ],
+  "hobbies": "Люблю рисовать и кататься на самокате в пасмурную погоду",
+  "publications": [
+    {
+      "title": "Название публикации",
+      "date": "04.2010"
+    },
+    {
+      "title": "Название другой публикации",
+      "date": "06.2016"
+    }
+  ],
+  "personal_skills": {
+    "0": "Лидерство",
+    "1": "Стрессоустойчивость",
+    "2": "Коммуникабельность"
+  },
+  "recomendations": [
+    {
+      "recomendator_name": "Иванов Петр Сергеевич",
+      "company_name": "ООО Компания и Ко",
+      "email": "email@companyand.co",
+      "phone": "88005553535"
+    },
+    {
+      "recomendator_name": "Иванов Алексей Сергеевич",
+      "company_name": "ООО Компания и Жо",
+      "email": "email@companyand.jo",
+      "phone": "88005532315"
+    }
+  ],
+  "additional info": "Это блок с дополнительной информацией, он может быть на несколько строк и абзацев. форматирование будет сохранено"
+}

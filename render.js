@@ -107,8 +107,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
     money = {
         label: ['Желаемая зарплата'],
         id: '',
-        name: 'sum',
-        name_val: 'currency',
+        name: 'desired_salary.sum',
+        name_val: 'desired_salary.currency',
         value: data['desired_salary']['currency'],
         value_sum: data['desired_salary']['sum'],
         options: ["₽", "$"],
@@ -247,6 +247,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     let ucer_vac = col(input(user_vacance));
 
 
+
     byId('main').appendChild(row(col(input(resume_name)), col(select(lang_select))));
     byId('main').appendChild(line('ОСНОВНАЯ ИНФОРМАЦИЯ'));
 
@@ -341,12 +342,9 @@ document.addEventListener("DOMContentLoaded", (e) => {
         event.preventDefault();
 
         const data = new FormData(event.target);
-
         const formJSON = Object.fromEntries(data.entries());
 
         console.log("//////")
-        console.log(data)
-        console.log(formJSON)
 
         OUT = formJSON;
 
@@ -355,10 +353,25 @@ document.addEventListener("DOMContentLoaded", (e) => {
         OUT['sec'] = {
             0: OUT['name']
         }
+        console.log("key values");
         for (let [k, v] of Object.entries(formJSON)) {
-            console.log(k, v)
+            if (k.includes(".")) {
+                let [topic, param] = k.split(".");
+                delete OUT[k];
+                console.log(topic, param)
+                console.log(OUT[topic])
+                if (OUT[topic] == 0) {
+                    console.log('UUUUUUUUUUUUUUUUUUUUU')
+                    OUT[topic] = {
+                        [param]: v
+                    }
+                } else {
+                    OUT[topic][param] = v
+                }
+                // OUT[topic][param] = v;
+            }
+            console.log(k, v);
         }
-
 
         const results = document.querySelector('.results pre');
         results.innerText = JSON.stringify(formJSON, null, 2);
