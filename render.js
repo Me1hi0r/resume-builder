@@ -117,15 +117,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
         validators: [is_str]
     }
 
-    role = {
-        label: ['Хочу быть'],
-        name: 'want_to_be',
-        value: data['want_to_be'],
-        contents: data['want_to_be'],
-        id: '',
-        validators: [is_lenLess4, is_space, is_numb]
-    }
-
     role_select = {
         label: ['Хочу быть'],
         name: 'want_to_be',
@@ -172,6 +163,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
         id: '',
         options: DOC_POS,
     }
+
     select_nurse = {
         label: ['Желаемая должность'],
         name: 'nurse_wanted_position',
@@ -215,14 +207,11 @@ document.addEventListener("DOMContentLoaded", (e) => {
         validators: [is_lenLess4, is_space, is_numb]
     }
 
-    check_boxes_one = {
-        // checks: ['Готовность к переезду', 'Готовность к командировкам'],
+    main_check_boxes = {
         checks: [
-            ["is_ready_to_move", 'Готовность к переезду', true],
-            ['is_ready_to_business_trip', 'Готовность к командировкам', false]
+            ["is_ready_to_move", 'Готовность к переезду', data['is_ready_to_move']],
+            ['is_ready_to_business_trip', 'Готовность к командировкам', data['is_ready_to_business_trip']]
         ],
-        value: data[''],
-        id: '',
     }
 
     email = {
@@ -235,9 +224,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
     telephone = {
         label: ['Телефон'],
-        value: ' 🇷🇺 +7',
-        value: data[''],
-        name: 'telephone',
+        value: data['phone'][0],
+        name: 'phone',
         id: '',
         validators: [is_str]
     }
@@ -273,7 +261,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     byId('main').appendChild(row(
         col(row(col(input(prava))),
             row(col(input(famely)))),
-        col(check_boxes(check_boxes_one))
+        col(check_boxes(main_check_boxes))
     ));
 
     byId('doctor').appendChild(row(col(line('ЖЕЛАЕМАЯ ДОЛЖНОСТЬ'))));
@@ -288,7 +276,12 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
     byId('kont').appendChild(row(col(line('КОНТАКТЫ'))));
     byId('kont').appendChild(row(col(input(email)), col(input(telephone))));
-    byId('kont').appendChild(row(col(btn_social('kont'))));
+    social_btn = {
+        id: 'kont',
+        lable: '+  Добавить социальную сеть',
+    }
+
+    byId('kont').appendChild(row(col(btn_social(social_btn))));
 
     byId('exp').appendChild(row(col(line('ОПЫТ РАБОТЫ'))));
     byId('exp').appendChild(row(col(hidden_msg('Стаж работы:', 'stazh'))));

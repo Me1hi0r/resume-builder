@@ -238,9 +238,7 @@ const TEST = `{
   "driver_license": "A,B",
   "family_status": "Холост",
   "is_ready_to_move": true,
-  "is_ready_to_business_trip": false,
-
-
+  "is_ready_to_business_trip": true,
 
   "social": {
     "facebook": "url.facebook.org",

@@ -206,35 +206,35 @@ function select(opt) {
 
 
 //BUTTONS - FORM
-function btn_social(name) {
+function btn_social(opt) {
     let p = create('p');
     p.classList.add('btn');
 
     let a = create('a');
-    a.innerText = '+  Добавить социальную сеть';
+    a.innerText = opt.lable;
     a.onclick = (e) => {
         e.preventDefault();
-        let parant = byId(name)
+        let parant = byId(opt.id)
         let last = parant.removeChild(parant.lastChild);
         let i = parant.children.length;
 
         link = {
-            label: ['Ссылка на профиль'],
-            value: '',
-            name: `link_${i-1}`,
-            id: '',
-            validators: []
-        }
+                label: ['Ссылка на профиль'],
+                value: '',
+                name: `link_${i-1}`,
+                id: '',
+                validators: []
+            },
 
-        select_social = {
-            label: ['Социальная сеть'],
-            name: `select_social${i-1}`,
-            id: '',
-            options: ['facebook', 'telegram', 'whatsapp']
-        }
+            select_social = {
+                label: ['Социальная сеть'],
+                name: `select_social${i-1}`,
+                id: '',
+                options: ['facebook', 'telegram', 'whatsapp']
+            },
 
 
-        parant.appendChild(create('div').appendChild(row(col(select(select_social)), col(input(link)))));
+            parant.appendChild(create('div').appendChild(row(col(select(select_social)), col(input(link)))));
         parant.appendChild(last);
     }
     p.appendChild(a);
