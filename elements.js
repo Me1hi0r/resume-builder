@@ -93,7 +93,29 @@ function inpt(id, name, value, valids) {
     return inp;
 }
 
-function sel(name, id, options) {
+function show(id, value) {
+    console.log('in show : ', id, value)
+    if (id == 'want_to_be') {
+        if (value == '1') {
+            byId('doctor').hidden = false;
+            byId('ruc').hidden = true;
+            byId('nurse').hidden = true;
+        }
+        if (value == '2') {
+            byId('nurse').hidden = false;
+            byId('doctor').hidden = true;
+            byId('ruc').hidden = true;
+        }
+        if (value == '3') {
+            byId('ruc').hidden = false;
+            byId('doctor').hidden = true;
+            byId('nurse').hidden = true;
+        }
+    }
+
+}
+
+function sel(name, id, options, key, value) {
     let sel = create('select')
     sel.classList.add('form-control');
     sel.classList.add('custom-select');
@@ -101,37 +123,19 @@ function sel(name, id, options) {
     sel.id = id;
     sel.name = name;
     let index = sel.options.length;
-    // if (Array.isArray(options)) {
-    //     for (let o of options) {
-    //         sel.options[index] = new Option(o, index++, false);
-    //     }
-    // } else {
     for (let [k, v] of Object.entries(options)) {
-        console.log(k, v)
-        sel.options[index++] = new Option(v, k, false);
-        // }
+        // console.log(k, v)
+        if (key && key === k) {
+            sel.options[index++] = new Option(v, k, "", (key === k) ? true : false);
+        } else if (value && value === v) {
+            sel.options[index++] = new Option(v, k, "", (value === v) ? true : false);
+        } else {
+            sel.options[index++] = new Option(v, k, "", false);
+        }
     }
 
-
-
     sel.onchange = () => {
-        if (sel.id == 'select_role') {
-            if (sel.value == '1') {
-                byId('doctor').hidden = false;
-                byId('ruc').hidden = true;
-                byId('nurse').hidden = true;
-            }
-            if (sel.value == '2') {
-                byId('nurse').hidden = false;
-                byId('doctor').hidden = true;
-                byId('ruc').hidden = true;
-            }
-            if (sel.value == '3') {
-                byId('ruc').hidden = false;
-                byId('doctor').hidden = true;
-                byId('nurse').hidden = true;
-            }
-        }
+        show(sel.id, sel.value)
     }
 
     return sel;
@@ -193,8 +197,8 @@ function select(opt) {
     if (opt.id === "") opt.id = opt.name;
     let item = create('div');
     item.appendChild(labl(opt.id, opt.label[0]));
-    console.log("OOOO: ", opt.options)
-    item.appendChild(sel(opt.name, opt.id, opt.options));
+    console.log("OOOO: ", opt)
+    item.appendChild(sel(opt.name, opt.id, opt.options, opt.key, opt.value));
     item.appendChild(err(opt.name));
     return item;
 };
@@ -481,39 +485,20 @@ function job_money(opt) {
     item.appendChild(labl(`${opt.name}_lab`, opt.label[0]));
     let d = create('div');
     d.classList.add('flex');
-
-    moneys = {
-        label: [''],
-        name: opt.name,
-        id: '',
-        name_val: 'money_val',
-        options: ["₽ ", "$ "],
-        validators: [is_str]
-    }
-
-    console.log(opt.value)
-    d.appendChild(inpt(opt.name, opt.name, opt.value_sum, opt.validators))
-
-    d.appendChild(sel(opt.name_val, opt.name_val, opt.options));
-    // d.appendChild(select(opt))
-
-
-
+    d.appendChild(inpt(opt.name, opt.name, opt.value_sum))
+    d.appendChild(sel(opt.name_val, opt.name_val, opt.options, opt.key));
     item.appendChild(d);
     item.appendChild(err('need_money'));
-
     return item;
 }
 
-
-function chec(name, val, ind, cls) {
+function chec(name, val, ind, state, cls) {
     let d = create('div');
     d.classList.add('form-check', (cls) ? cls : 'my-check');
-    d.innerHTML = `<input type="checkbox" class="form-check-input success" name="${name}${ind}" value="true"></input>`;
+    d.innerHTML = `<input type="checkbox" class="form-check-input success" name="${name}" ${(state) ? 'checked':''}></input>`;
     d.appendChild(labl('', val, 'nostyle'));
     return d;
 }
-
 
 function check_boxes(opt) {
     if (opt.id === "") opt.id = opt.name;
@@ -521,8 +506,8 @@ function check_boxes(opt) {
     div.classList.add('check');
 
     let index = div.childNodes.length;
-    for (let ch of opt.checks) {
-        div.appendChild(chec(opt.name, ch, index++));
+    for (let [name, lable, state] of opt.checks) {
+        div.appendChild(chec(name, lable, index++, state));
         // check.appendChild(div);
     }
 

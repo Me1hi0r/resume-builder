@@ -200,6 +200,9 @@ const NURSE_COMP = {
     ]
 };
 
+const PEREEZD = ['возможен', 'невозможен']
+const EMPLOYMENT = ['...', 'полная', 'частичная']
+const JOB_TIME = ['...', 'полный', 'сменный', 'частичный']
 const TEST = `{
   "language": "en",
   "title": "Название резюме",
@@ -218,16 +221,27 @@ const TEST = `{
   "metro_station": "Ленинский проспект",
   "desired_salary": {
     "sum": "170000",
-    "currency": "rub"
+    "currency": "dol"
   },
-  "want_to_be": "Главврач-онколог",
+  "want_to_be": "медицинская сестра",
+  "doc_wanted_position": "врач-акушер-гинеколог",
+  "nurse_wanted_position": "медицинская сестра патронажная",
+  "nurse_lisence":"34445335234",
+  "nurse_lisence_date":"2012-05-22",
+  "manager_wanted_position": "супер босс",
+
+
   "employment": "полная",
+  "job_time": "полный",
   "citizenship": "Россия",
-  "movement": "Москва",
+  "movement": "возможен",
   "driver_license": "A,B",
   "family_status": "Холост",
   "is_ready_to_move": true,
   "is_ready_to_business_trip": false,
+
+
+
   "social": {
     "facebook": "url.facebook.org",
     "telegram": "telegramnickname",

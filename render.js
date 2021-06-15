@@ -1,10 +1,20 @@
 var data;
 var OUT;
 var LN;
+var LOADED_ROLE;
 document.addEventListener("DOMContentLoaded", (e) => {
     data = JSON.parse(TEST);
     console.log(data)
     LN = data['language']
+    LOADED_ROLE = data['want_to_be']
+
+    console.log(LOADED_ROLE);
+
+    for (let [k, v] of Object.entries(ROLE)) {
+        if (data['want_to_be'] == v)
+            show('want_to_be', k)
+        console.log("index ", k)
+    }
 
     resume_name = {
         name: 'title',
@@ -21,21 +31,21 @@ document.addEventListener("DOMContentLoaded", (e) => {
     }]
     x[0](3)
 
+
+
     lang_select = {
-        label: ['Языкdd резюме'],
+        label: ['Язык резюме'],
         name: 'language',
-        value: data['language'],
-        id: '',
-        // options: ["Руский", "Англиский"]
+        key: data['language'],
         options: {
-            ru: "Русский",
-            en: "Англиский"
+            ru: " 🇷🇺 Русский",
+            en: " 🇺🇸 Англиский"
         }
     }
 
     user_fname = {
         label: ['Имя'],
-        name: 'nyame',
+        name: 'name',
         value: data['name'],
         id: '',
         validators: [is_lenLess4, is_space, is_numb]
@@ -85,18 +95,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
         validators: [is_lenLess4, is_space, is_numb]
     }
 
-    lang_select = {
-        label: ['Язык резюме'],
-        name: 'language',
-        value: data['language'],
-        id: '',
-        // options: [" 🇷🇺 Русcкий", " 🇺🇸 Англисcкий", ]
-        options: {
-            ru: " 🇷🇺 Русский",
-            en: " 🇺🇸 Англиский"
-        }
-    }
-
     city = {
         label: ['Город проживания'],
         name: 'city',
@@ -104,81 +102,101 @@ document.addEventListener("DOMContentLoaded", (e) => {
         id: '',
         validators: [is_lenLess4, is_space, is_numb]
     }
+
     money = {
         label: ['Желаемая зарплата'],
         id: '',
         name: 'desired_salary.sum',
         name_val: 'desired_salary.currency',
-        value: data['desired_salary']['currency'],
+        key: data['desired_salary']['currency'],
         value_sum: data['desired_salary']['sum'],
-        options: ["₽", "$"],
+        options: {
+            rub: "₽",
+            dol: "$"
+        },
         validators: [is_str]
     }
 
     role = {
         label: ['Хочу быть'],
-        name: 'resume_name',
-        value: data[''],
+        name: 'want_to_be',
+        value: data['want_to_be'],
+        contents: data['want_to_be'],
         id: '',
         validators: [is_lenLess4, is_space, is_numb]
     }
 
     role_select = {
         label: ['Хочу быть'],
-        name: 'select_role',
-        value: data[''],
+        name: 'want_to_be',
+        value: data['want_to_be'],
         id: '',
         options: ROLE
     }
 
     pereezd_select = {
         label: ['Переезд'],
-        name: 'select_pereezd',
-        value: data[''],
+        name: 'movement',
+        value: data['movement'],
         id: '',
-        options: ['Возможен', 'Невозможен']
+        options: PEREEZD
     }
 
     zanatost_select = {
         label: ['Занятость'],
-        name: 'select_zanatost',
-        value: data[''],
+        name: 'employment',
+        value: data['employment'],
         id: '',
-        options: ['...', 'Полная', 'Частичная']
+        options: EMPLOYMENT
     }
 
     graphic_select = {
         label: ['График работы'],
-        name: 'select_graphic',
-        value: data[''],
+        name: 'job_time',
+        value: data['job_time'],
         id: '',
-        options: ['...', 'Полный', 'Сменный', 'Удаленная работа']
+        options: JOB_TIME
     }
-
-    country_select = {
+    citizenship = {
         label: ['Гражданство'],
-        name: 'select_country',
-        value: data[''],
+        name: 'citizenship',
+        value: data['citizenship'],
         id: '',
-        options: ['...', 'РФ']
+        validators: [is_lenLess4, is_space, is_numb]
     }
 
     select_doc = {
         label: ['Желаемая должность'],
-        name: 'select_doc',
-        value: data[''],
-
-        name: 'desired_salary',
-        value: data['desired_salary'],
+        name: 'doc_wanted_position',
+        value: data['doc_wanted_position'],
         id: '',
         options: DOC_POS,
     }
     select_nurse = {
         label: ['Желаемая должность'],
-        name: 'select_nurse',
-        value: data[''],
+        name: 'nurse_wanted_position',
+        value: data['nurse_wanted_position'],
         id: '',
         options: NURSE_POSE,
+    }
+
+
+    license = {
+        label: ['Специализация по удостовирению сестринское дело'],
+        name: 'nurse_lisence',
+        value: data['nurse_lisence'],
+        id: '',
+        validators: [is_lenLess4, is_space, is_numb]
+    }
+
+
+
+    ruccc = {
+        label: ['Наименование должности'],
+        name: 'manager_wanted_position',
+        value: data['manager_wanted_position'],
+        id: '',
+        validators: [is_lenLess4, is_space, is_numb]
     }
 
     prava = {
@@ -198,8 +216,11 @@ document.addEventListener("DOMContentLoaded", (e) => {
     }
 
     check_boxes_one = {
-        checks: ['Готовность к переезду', 'Готовность к командировкам'],
-        name: 'check_boxes_one',
+        // checks: ['Готовность к переезду', 'Готовность к командировкам'],
+        checks: [
+            ["is_ready_to_move", 'Готовность к переезду', true],
+            ['is_ready_to_business_trip', 'Готовность к командировкам', false]
+        ],
         value: data[''],
         id: '',
     }
@@ -212,20 +233,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
         validators: [is_lenLess4, is_space, is_numb]
     }
 
-    license = {
-        label: ['Специализация по удостовирению сестринское дело'],
-        name: 'email',
-        value: data[''],
-        id: '',
-        validators: [is_lenLess4, is_space, is_numb]
-    }
-    ruccc = {
-        label: ['Наименование должности'],
-        name: 'email',
-        value: data[''],
-        id: '',
-        validators: [is_lenLess4, is_space, is_numb]
-    }
     telephone = {
         label: ['Телефон'],
         value: ' 🇷🇺 +7',
@@ -236,9 +243,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
     }
     danures = {
         label: ["Дата выдачи удостоверения"],
-        value: "2013-07-23",
-        value: data[''],
-        name: 'birth',
+        value: data['nurse_lisence_date'],
+        name: 'nurse_lisence_date',
         type: 'date',
         id: '',
         min: '',
@@ -262,7 +268,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     byId('main').appendChild(row(col(select(role_select)), col(
         row(col(select(zanatost_select)), col(select(graphic_select))))))
 
-    byId('main').appendChild(row(col(select(graphic_select)), col(select(pereezd_select))))
+    byId('main').appendChild(row(col(input(citizenship)), col(select(pereezd_select))))
 
     byId('main').appendChild(row(
         col(row(col(input(prava))),
@@ -324,17 +330,12 @@ document.addEventListener("DOMContentLoaded", (e) => {
     byId('dop').appendChild(row(col(row(btn(dop_1)), row(btn(dop_2)), row(btn(dop_3))), col(row(btn(dop_4)), row(btn(dop_5)))))
 
     // byId('previw').appendChild(row(col(line('ВАШЕ РЕЗЮМЕ'))));
-
-
     // let div = create('div');
     // div.classList.add('prev');
 
     // let b1 = create('div');
     // let l1 = labl('', 'Скачать')
     // b1.appendChild(l1)
-
-
-
     // byId('previw').appendChild(row(col(div)));
     // byId('previw').appendChild(row(col(b1), col(), col()));
 
@@ -353,28 +354,39 @@ document.addEventListener("DOMContentLoaded", (e) => {
         OUT['sec'] = {
             0: OUT['name']
         }
-        console.log("key values");
+        console.log("check nested <=> name.subname");
         for (let [k, v] of Object.entries(formJSON)) {
             if (k.includes(".")) {
                 let [topic, param] = k.split(".");
+                console.log("key", k, "val", v, "TP", topic, param)
                 delete OUT[k];
-                console.log(topic, param)
-                console.log(OUT[topic])
-                if (OUT[topic] == 0) {
-                    console.log('UUUUUUUUUUUUUUUUUUUUU')
-                    OUT[topic] = {
-                        [param]: v
-                    }
-                } else {
+                if (topic in OUT) {
                     OUT[topic][param] = v
+                } else OUT[topic] = {
+                    [param]: v
                 }
-                // OUT[topic][param] = v;
             }
-            console.log(k, v);
-        }
 
+            if (k.includes("want_to_be"))
+                OUT["want_to_be"] = ROLE[v];
+            if (k.includes("movement"))
+                OUT["movement"] = PEREEZD[v];
+            if (k.includes("employment"))
+                OUT["employment"] = EMPLOYMENT[v];
+            if (k.includes("job_time"))
+                OUT["job_time"] = JOB_TIME[v];
+            if (k.includes("doc_wanted_position"))
+                OUT["doc_wanted_position"] = DOC_POS[v]
+            if (k.includes("nurse_wanted_position"))
+                OUT["nurse_wanted_position"] = NURSE_POSE[v]
+
+        }
+        OUT['is_ready_to_move'] = ('is_ready_to_move' in OUT) ? 'false' : 'true';
+        OUT['doc_wanted_position']
+        OUT['is_ready_to_business_trip'] = ('is_ready_to_business_trip' in OUT) ? 'false' : 'true';
         const results = document.querySelector('.results pre');
         results.innerText = JSON.stringify(formJSON, null, 2);
+
     }
 
     const form = document.querySelector('.contact-form');
